@@ -1,3 +1,6 @@
+------------------------------------------------------------------
+------------------------------SCHEMA------------------------------
+------------------------------------------------------------------
 -- Address contains the registered address of the company (excluding the zip code and country
 -- Zip is the zip code of the Address
 -- Country is the incorporation country of the company (same as the country for the Address)
@@ -44,7 +47,9 @@ CREATE TABLE ASXLog (
   primary key ("Timestamp", "Date", Code)
 );
 
-
+------------------------------------------------------------------
+------------------------------QUERIES-----------------------------
+------------------------------------------------------------------
 --List all the company names (and countries) that are incorporated 
 --outside Australia.
 create or replace view Q1 (Name, Country) as
@@ -203,9 +208,6 @@ create or replace view Q13(Code, Name, Address, Zip, Sector) as
 --last trading day (i.e., the oldest "Date" and the most recent "Date" of the 
 --records stored in the ASX table). Order your result by Gain in descending 
 --order and then by Code in ascending order.
-
-
-
 create or replace view min_max(code, mindate, maxdate) as --creating view for beginning date and ending date
     select asx.code, min(asx."Date"), max(asx."Date") 
     from asx
